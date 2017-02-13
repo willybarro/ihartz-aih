@@ -84,7 +84,7 @@
                             <label>Width:</label>
                         </div>
                         <div class="col-lg-3">
-                            <input type="text" name="width">
+                            <input type="text" id="width" name="width">
                         </div>
                     </div>
                     <div class="row">
@@ -92,7 +92,7 @@
                             <label>Height:</label>
                         </div>
                         <div class="col-lg-3">
-                            <input type="text" name="height">
+                            <input type="text" id="height" name="height">
                         </div>
                     </div>
                     <div class="row">
@@ -100,7 +100,7 @@
                             
                         </div>
                         <div class="col-lg-3">
-                            <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Just do it!</a>
+                            <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick="justDoIt()">Just do it!</a>
                         </div>
                         
                     </div>
@@ -111,15 +111,6 @@
                     <h1 class="page-header">Output</h1>
                 </div>
                 <div id="output_links">
-                    <a href="#">Dummy</a><br />
-                    <a href="#">Dummy</a><br />
-                    <a href="#">Dummy</a><br />
-                    <a href="#">Dummy</a><br />
-                    <a href="#">Dummy</a><br />
-                    <a href="#">Dummy</a><br />
-                    <a href="#">Dummy</a><br />
-                    <a href="#">Dummy</a><br />
-                    
                 </div>
             </div>
         </div>
@@ -139,6 +130,35 @@
     $(".img-responsive").click(function(){
         $("#image-url").val($(this).attr('src'));
     });
+    thumbolina = {
+        baseUrl: "https://7y1sxu9dl0.execute-api.us-east-1.amazonaws.com/image",
+
+        resize: function(imageOriginalUrl, resizeW, resizeH, fillType) {
+            fillType = fillType || 'fit-in';
+            
+            imageUrlParts = imageOriginalUrl.split('?')[0].split('/');
+            
+            imageName = imageUrlParts[4] + '/' + imageUrlParts[5];
+            url = this.baseUrl + '/' + fillType + '/' + resizeW + 'x' + resizeH + '/' + imageName;
+            
+            a = document.createElement('a');
+            t = document.createTextNode(url);
+            a.appendChild(t);
+            a.setAttribute('href', url);
+            a.setAttribute('target', '_blank');
+
+            return a;
+        }
+    };
+    function justDoIt() {
+        w = document.getElementById('width').value;
+        h = document.getElementById('height').value;
+        a = thumbolina.resize(document.getElementById('image-url').value, w, h, 'fit-in');
+        ph = $('#output_links');
+        ph.html('');
+        console.log(ph, a);
+        ph.append(a)
+     }
 </script>
 
 </html>
