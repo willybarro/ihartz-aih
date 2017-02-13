@@ -34,7 +34,7 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-lg-3" style="overflow-y: scroll; height: 600px;">
+            <div class="col-lg-3" style="overflow-y: scroll; height: 770px;">
                 <div class="col-lg-3">
                     <h1 class="page-header">Gallery</h1>
                 </div>
@@ -167,13 +167,9 @@
             imageName = imageUrlParts[4] + '/' + imageUrlParts[5];
             url = this.baseUrl + '/' + method + '/' + resizeW + 'x' + resizeH + filterPart + '/' + imageName;
             
-            a = document.createElement('a');
-            t = document.createTextNode(url);
-            a.appendChild(t);
-            a.setAttribute('href', url);
-            a.setAttribute('target', '_blank');
+            strLink = '<a target="_blank" href="' + url + '">' + url.replace('/image/', '<br />/image/') + '</a>'
 
-            return a;
+            return strLink;
         }
     };
     function justDoIt() {
