@@ -71,37 +71,35 @@
 
                 <div class="col-lg-12">
                     <a class="thumbnail" href="#">
-                        <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                        <img class="img-responsive" src="https://s3.amazonaws.com/tc-aws-lambda/02kjwf98n2/file000132701536.jpg" alt="">
                     </a>
                 </div>
                 <div class="col-lg-12">
                     <a class="thumbnail" href="#">
-                        <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                        <img class="img-responsive" src="https://s3.amazonaws.com/tc-aws-lambda/02kjwf98n2/file0001706961259.jpg" alt="">
                     </a>
                 </div>
                 <div class="col-lg-12">
                     <a class="thumbnail" href="#">
-                        <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                        <img class="img-responsive" src="https://s3.amazonaws.com/tc-aws-lambda/02kjwf98n2/file0001735386118.jpg" alt="">
                     </a>
                 </div>
                 <div class="col-lg-12">
                     <a class="thumbnail" href="#">
-                        <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                        <img class="img-responsive" src="https://s3.amazonaws.com/tc-aws-lambda/02kjwf98n2/file0001792779106.jpg" alt="">
                     </a>
                 </div>
                 <div class="col-lg-12">
                     <a class="thumbnail" href="#">
-                        <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                        <img class="img-responsive" src="https://s3.amazonaws.com/tc-aws-lambda/02kjwf98n2/file0001817248786.jpg" alt="">
                     </a>
                 </div>
             </div>
             <div class="col-lg-3">
-                <div class="col-lg-3">
-                    <h1 class="page-header">Handler</h1>
-                </div>
-
-                <div class="col-lg-12">
-                    Ola
+                <h1 class="page-header">Handler</h1>
+                <div class="form-group">
+                  <label for="usr">Name:</label>
+                  <input type="text" class="form-control" id="image-url">
                 </div>
             </div>
         </div>
@@ -127,5 +125,11 @@
     <script src="js/bootstrap.min.js"></script>
 
 </body>
+
+<script>
+    $(".img-responsive").click(function(){
+        $("#image-url").val($(this).attr('src'));
+    });
+</script>
 
 </html>
