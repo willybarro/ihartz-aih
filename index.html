@@ -97,6 +97,32 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-2">
+                            <label>Crop</label>
+                        </div>
+                        <div class="col-lg-3">
+                            <input type="checkbox" id="crop">
+                        </div>
+                    </div>
+                    <div id="crop_options" class="hidden">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <label>Crop X</label>
+                            </div>
+                            <div class="col-lg-3">
+                                <input type="text" id="crop_x">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <label>Crop Y</label>
+                            </div>
+                            <div class="col-lg-3">
+                                <input type="text" id="crop_y">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-2">
                             
                         </div>
                         <div class="col-lg-3">
@@ -127,8 +153,18 @@
 </body>
 
 <script>
-    $(".img-responsive").click(function(){
-        $("#image-url").val($(this).attr('src'));
+    $(function() {
+        $(".img-responsive").click(function(){
+            $("#image-url").val($(this).attr('src'));
+        });
+
+        $('#crop').bind('click', function() {
+            if($(this).is(':checked')) {
+                $('#crop_options').removeClass('hidden');
+            } else {
+                $('#crop_options').addClass('hidden');
+            }
+        })
     });
     thumbolina = {
         baseUrl: "https://7y1sxu9dl0.execute-api.us-east-1.amazonaws.com/image",
