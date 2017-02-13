@@ -179,11 +179,26 @@
     function justDoIt() {
         w = document.getElementById('width').value;
         h = document.getElementById('height').value;
-        fill = '';
+        filter = '';
         if ($('#fill').is(':checked')) {
-            fill = 'filters:fill(' + $('#fill_color').val() + ')';
+            filter += ':fill(' + $('#fill_color').val() + ')';
         }
-        a = thumbolina.resize(document.getElementById('image-url').value, w, h, 'fit-in', fill);
+
+        if ($('#black_white').is(':checked')) {
+        
+            filter += ':grayscale()';
+        }
+        
+        if ($('#rotate_90_ccw').is(':checked')) {
+        
+            filter += ':rotate(90)';
+        }
+
+        if (filter) {
+            filter = 'filters' + filter;
+        }
+
+        a = thumbolina.resize(document.getElementById('image-url').value, w, h, 'fit-in', filter);
         ph = $('#output_links');
         ph.html('');
         console.log(ph, a);
