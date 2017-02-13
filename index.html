@@ -109,8 +109,18 @@
 </body>
 
 <script>
-    $(".img-responsive").click(function(){
-        $("#image-url").val($(this).attr('src'));
+    $(function() {
+        $(".img-responsive").click(function(){
+            $("#image-url").val($(this).attr('src'));
+        });
+
+        $('#crop').bind('click', function() {
+            if($(this).is(':checked')) {
+                $('#crop_options').removeClass('hidden');
+            } else {
+                $('#crop_options').addClass('hidden');
+            }
+        })
     });
     thumbolina = {
         baseUrl: "https://7y1sxu9dl0.execute-api.us-east-1.amazonaws.com/image",
