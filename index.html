@@ -102,9 +102,9 @@
                         <div class="col-lg-3">
                             <input type="checkbox" id="fill">
                             <select id="fill_color">
-                                <option value="#ff0000">Red</option>
-                                <option value="#00ff00">Green</option>
-                                <option value="#0000ff">Blue</option>
+                                <option value="ff0000">Red</option>
+                                <option value="00ff00">Green</option>
+                                <option value="0000ff">Blue</option>
                             </select>
                         </div>
                     </div>
@@ -156,13 +156,17 @@
     thumbolina = {
         baseUrl: "https://7y1sxu9dl0.execute-api.us-east-1.amazonaws.com/image",
 
-        resize: function(imageOriginalUrl, resizeW, resizeH, fillType) {
-            fillType = fillType || 'fit-in';
+        resize: function(imageOriginalUrl, resizeW, resizeH, method, filter) {
             
             imageUrlParts = imageOriginalUrl.split('?')[0].split('/');
             
+            filterPart = '';
+            if (filter) {
+                filterPart = '/' + filter;
+            }
+
             imageName = imageUrlParts[4] + '/' + imageUrlParts[5];
-            url = this.baseUrl + '/' + fillType + '/' + resizeW + 'x' + resizeH + '/' + imageName;
+            url = this.baseUrl + '/' + method + '/' + resizeW + 'x' + resizeH + filterPart + '/' + imageName;
             
             a = document.createElement('a');
             t = document.createTextNode(url);
@@ -176,7 +180,11 @@
     function justDoIt() {
         w = document.getElementById('width').value;
         h = document.getElementById('height').value;
-        a = thumbolina.resize(document.getElementById('image-url').value, w, h, 'fit-in');
+        fill = '';
+        if ($('#fill').is(':checked')) {
+            fill = 'filters:fill(' + $('#fill_color').val() + ')';
+        }
+        a = thumbolina.resize(document.getElementById('image-url').value, w, h, 'fit-in', fill);
         ph = $('#output_links');
         ph.html('');
         console.log(ph, a);
